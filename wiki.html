@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoboCraft BR — Wiki Completo</title>
+  <link rel="canonical" href="https://robocraft.github.io/robot-guide/wiki.html">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg-0: #050505;
+      --bg-1: #0a0a0a;
+      --bg-2: #111111;
+      --bg-3: #181818;
+      --text-0: #f0f0f0;
+      --text-1: #a0a0a0;
+      --text-2: #666666;
+      --accent: #ff3333;
+      --green: #00cc44;
+      --cyan: #00cccc;
+      --border: #2a2a2a;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+      background: var(--bg-0);
+      color: var(--text-0);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+    a { color: var(--text-0); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-1); }
+    ::-webkit-scrollbar-thumb { background: var(--border); }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    .nav { padding: 16px 0; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg-0); z-index: 100; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 14px; letter-spacing: 0.05em; }
+    .logo::before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--accent); margin-right: 8px; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--text-2); }
+    .nav-links a:hover { color: var(--text-0); }
+    h1 { font-family: 'Space Mono', monospace; font-size: 2rem; font-weight: 700; margin-bottom: 16px; }
+    h2 { font-family: 'Space Mono', monospace; font-size: 1.5rem; font-weight: 700; margin: 48px 0 16px; padding-top: 32px; border-top: 1px solid var(--border); }
+    h3 { font-size: 1.125rem; font-weight: 600; margin: 32px 0 12px; }
+    h4 { font-size: 1rem; font-weight: 600; margin: 24px 0 8px; }
+    p { color: var(--text-1); margin-bottom: 16px; }
+    ul, ol { color: var(--text-1); margin-bottom: 16px; padding-left: 24px; }
+    li { margin-bottom: 8px; }
+    code { font-family: 'JetBrains Mono', monospace; font-size: 13px; background: var(--bg-2); padding: 2px 6px; color: var(--green); }
+    pre { background: var(--bg-1); border: 1px solid var(--border); padding: 16px; margin: 16px 0; overflow-x: auto; }
+    pre code { background: none; padding: 0; font-size: 12px; line-height: 1.6; }
+    .callout { padding: 16px; background: var(--bg-2); border-left: 3px solid var(--accent); margin: 16px 0; }
+    .callout.warning { border-left-color: var(--green); }
+    .callout.info { border-left-color: var(--cyan); }
+    .callout.tip { border-left-color: var(--accent); }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); font-size: 14px; }
+    th { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-2); background: var(--bg-2); }
+    .project-card { background: var(--bg-1); border: 1px solid var(--border); padding: 20px; margin: 16px 0; }
+    .project-card h4 { margin-top: 0; }
+    .badge { display: inline-block; padding: 2px 8px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-right: 8px; }
+    .badge.easy { color: var(--green); border: 1px solid var(--green); }
+    .badge.medium { color: #ffcc00; border: 1px solid #ffcc00; }
+    .badge.hard { color: var(--accent); border: 1px solid var(--accent); }
+    .footer { padding: 48px 0; border-top: 1px solid var(--border); margin-top: 64px; text-align: center; }
+    .footer p { font-size: 12px; color: var(--text-2); margin-bottom: 8px; }
+    .toc { position: fixed; left: 24px; top: 100px; width: 200px; }
+    .toc-title { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-2); margin-bottom: 16px; }
+    .toc-list { list-style: none; border-left: 1px solid var(--border); }
+    .toc-list li { margin-bottom: 0; }
+    .toc-list a { display: block; padding: 6px 0 6px 16px; font-size: 13px; color: var(--text-1); border-left: 2px solid transparent; margin-left: -1px; }
+    .toc-list a:hover { color: var(--text-0); }
+    .toc-list a.active { color: var(--accent); border-left-color: var(--accent); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin: 16px 0; }
+    .grid-card { background: var(--bg-1); border: 1px solid var(--border); padding: 16px; }
+    .grid-card h5 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+    .grid-card p { font-size: 13px; color: var(--text-1); margin-bottom: 0; }
+    @media (max-width: 1024px) { .toc { display: none; } }
+    @media (max-width: 768px) { .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="/">ROBOCRAFT BR</a>
+      <ul class="nav-links">
+        <li><a href="/">Início</a></li>
+        <li><a href="/#robots">Robôs</a></li>
+        <li><a href="/wiki">Wiki</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header style="padding: 48px 0 32px; border-bottom: 1px solid var(--border); margin-bottom: 40px;">
+      <h1>Wiki RoboCraft BR</h1>
+      <p>Documentação completa para montar robôs com IA no Brasil</p>
+    </header>
+
+    <div style="display: grid; grid-template-columns: 1fr 220px; gap: 48px;">
+      <main>
+        <h2 id="introducao">Introdução</h2>
+        <p>Este wiki documenta como construir robôs com inteligência artificial usando componentes disponíveis no Brasil. O projeto usa DimOS como plataforma principal de IA, integrado com Modal GLM-5.1 para processamento de linguagem natural.</p>
+        <div class="callout info">
+          <strong>Nota:</strong> Este guia assume conhecimento básico de Arduino e programação Python. Se você é iniciante, recomendamos começar com o projeto ESP32-CAM.
+        </div>
+
+        <h2 id="projetos">Projetos Disponíveis</h2>
+        <p>Temos 5 projetos disponíveis, do mais simples ao mais avançado:</p>
+
+        <div class="project-card">
+          <span class="badge easy">Fácil</span>
+          <h4>1. ESP32-CAM Visão Computacional</h4>
+          <p><strong>Custo:</strong> R$ 35–55 | <strong>Tempo:</strong> 1–2 horas</p>
+          <p>Módulo de visão computacional ultra-barato. Transmite vídeo via Wi-Fi, roda TensorFlow Lite.</p>
+          <ul>
+            <li>Câmera segurança</li>
+            <li>Monitoramento plantas</li>
+            <li>Visão computacional</li>
+            <li>IoT</li>
+          </ul>
+        </div>
+
+        <div class="project-card">
+          <span class="badge easy">Fácil</span>
+          <h4>2. Cabeça Humanóide Falante</h4>
+          <p><strong>Custo:</strong> R$ 150–400 | <strong>Tempo:</strong> 4–6 horas</p>
+          <p>Cabeça falante com olhos animatrônicos que se movem. Ideal para templos, recepcionistas, museus.</p>
+        </div>
+
+        <div class="project-card">
+          <span class="badge easy">Fácil</span>
+          <h4>3. Robô Braitenberg V2</h4>
+          <p><strong>Custo:</strong> R$ 80–150 | <strong>Tempo:</strong> 2–3 horas</p>
+          <p>Robô reativo que segue fontes de luz automaticamente. Conceito clássico de IA em hardware.</p>
+        </div>
+
+        <div class="project-card">
+          <span class="badge medium">Médio</span>
+          <h4>4. Carro 2WD com Câmera</h4>
+          <p><strong>Custo:</strong> R$ 200–350 | <strong>Tempo:</strong> 6–8 horas</p>
+          <p>Chassi 2WD com câmera ESP32-CAM. Para patrulhamento e monitoramento remoto.</p>
+        </div>
+
+        <div class="project-card">
+          <span class="badge hard">Difícil</span>
+          <h4>5. Braço Robótico 4DOF</h4>
+          <p><strong>Custo:</strong> R$ 200–350 | <strong>Tempo:</strong> 8–12 horas</p>
+          <p>Braço robótico com 4 graus de liberdade. Para pick and place.</p>
+        </div>
+
+        <h2 id="pecas">Lista de Peças (BOM)</h2>
+        <table>
+          <thead>
+            <tr><th>Peça</th><th>Preço</th><th>Onde Comprar</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Arduino Uno R3</td><td>R$ 35–60</td><td>Mercado Livre</td></tr>
+            <tr><td>Arduino Mega 2560</td><td>R$ 50–80</td><td>Mercado Livre</td></tr>
+            <tr><td>ESP32-CAM AI-Thinker</td><td>R$ 35–55</td><td>Mercado Livre</td></tr>
+            <tr><td>PCA9685 Driver Servo</td><td>R$ 25–45</td><td>Mercado Livre</td></tr>
+            <tr><td>Servos SG90</td><td>R$ 8–15 cada</td><td>Mercado Livre</td></tr>
+            <tr><td>Servos MG996R</td><td>R$ 15–25 cada</td><td>Mercado Livre</td></tr>
+            <tr><td>DFPlayer Mini MP3</td><td>R$ 20–35</td><td>Mercado Livre</td></tr>
+            <tr><td>L298N Driver Motor</td><td>R$ 15–25</td><td>Mercado Livre</td></tr>
+            <tr><td>L293D Driver Motor</td><td>R$ 10–20</td><td>Mercado Livre</td></tr>
+            <tr><td>Bateria 18650</td><td>R$ 10–20</td><td>Mercado Livre</td></tr>
+            <tr><td>Bateria 9V</td><td>R$ 10–20</td><td>Mercado Livre</td></tr>
+            <tr><td>HC-SR04 Ultrassônico</td><td>R$ 10–18</td><td>Mercado Livre</td></tr>
+            <tr><td>LDR</td><td>R$ 2–5</td><td>Mercado Livre</td></tr>
+            <tr><td>Módulo FTDI USB</td><td>R$ 15–25</td><td>Mercado Livre</td></tr>
+            <tr><td>Chassi 2WD</td><td>R$ 40–70</td><td>Mercado Livre</td></tr>
+            <tr><td>Jumpers</td><td>R$ 5–10</td><td>Mercado Livre</td></tr>
+          </tbody>
+        </table>
+
+        <h2 id="pinout">Pinouts</h2>
+        <h3>Arduino Uno</h3>
+        <table>
+          <thead>
+            <tr><th>Pino</th><th>Função</th><th>Observação</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>A4</td><td>SDA (I2C)</td><td>Data</td></tr>
+            <tr><td>A5</td><td>SCL (I2C)</td><td>Clock</td></tr>
+            <tr><td>D0</td><td>RX</td><td>Serial In</td></tr>
+            <tr><td>D1</td><td>TX</td><td>Serial Out</td></tr>
+            <tr><td>D3, D5, D6, D9, D10, D11</td><td>PWM</td><td>Analog Write</td></tr>
+            <tr><td>D2-D13</td><td>Digital I/O</td><td>GPIO</td></tr>
+            <tr><td>A0-A5</td><td>Analog In</td><td>ADC</td></tr>
+          </tbody>
+        </table>
+
+        <h3>ESP32-CAM</h3>
+        <table>
+          <thead>
+            <tr><th>Pino</th><th>Função</th><th>Observação</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>U0T</td><td>TX</td><td>FTDI RX</td></tr>
+            <tr><td>U0R</td><td>RX</td><td>FTDI TX</td></tr>
+            <tr><td>GPIO0</td><td>Flash</td><td> GND para programar</td></tr>
+            <tr><td>EN</td><td>Enable</td><td>Pull-up interno</td></tr>
+            <tr><td>GPIO1</td><td>Camera Y9</td><td>Dados câmera</td></tr>
+            <tr><td>GPIO3</td><td>Camera Y8</td><td>Dados câmera</td></tr>
+          </tbody>
+        </table>
+
+        <h2 id="tts">Voz / TTS</h2>
+        <p>Existem duas categorias: TTS na nuvem e TTS local (sem internet).</p>
+
+        <h3>TTS na Nuvem</h3>
+        <table>
+          <thead>
+            <tr><th>Provedor</th><th>Qualidade</th><th>Gratuito</th><th>Latência</th><th>Vozes pt-BR</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Edge TTS</td><td>Alta</td><td>Sim</td><td>Baixa</td><td>Excelente</td></tr>
+            <tr><td>gTTS</td><td>Média</td><td>Sim</td><td>Média</td><td>Bom</td></tr>
+            <tr><td>ElevenLabs</td><td>Ultra Alta</td><td>Sim*</td><td>Média</td><td>Excelente</td></tr>
+            <tr><td>OpenAI TTS</td><td>Alta</td><td>Não</td><td>Baixa</td><td>Bom</td></tr>
+          </tbody>
+        </table>
+        <p><em>* Plano gratuito com 10k caracteres/mês</em></p>
+
+        <h3>TTS Local</h3>
+        <table>
+          <thead>
+            <tr><th>Provedor</th><th>Qualidade</th><th>Latência</th><th>Plataforma</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Piper TTS</td><td>Alta</td><td>&lt;50ms</td><td>Raspberry Pi</td></tr>
+            <tr><td>Coqui TTS</td><td>Muito Alta</td><td>Média</td><td>GPU</td></tr>
+            <tr><td>Mimic3</td><td>Alta</td><td>Média</td><td>PC</td></tr>
+            <tr><td>eSpeak NG</td><td>Baixa</td><td>Instantânea</td><td>Qualquer MCU</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Instalação TTS</h3>
+        <pre><code># Edge TTS (recomendado)
+pip install edge-tts
+
+# gTTS
+pip install gtts
+
+# ElevenLabs
+pip install elevenlabs
+
+# Piper TTS
+pip install piper-tts
+# Baixar modelo: https://rhasspy.net/files/piper/pt_BR-edresson/
+
+# Coqui TTS
+pip install TTS
+
+# eSpeak NG
+sudo apt install espeak-ng</code></pre>
+
+        <h2 id="arduino">Programação Arduino</h2>
+        <h3>Configuração Arduino IDE</h3>
+        <pre><code># Arduino IDE Setup para ESP32
+# File > Preferences > Additional Boards Manager URL:
+https://raw.githubusercontent.com/espressif/arduino-esp32/master/package_esp32_index.json
+
+# Install Library:
+# Tools > Board > Board Manager > esp32 by Espressif</code></pre>
+
+        <h3>Bibliotecas Necessárias</h3>
+        <pre><code># Via Library Manager:
+- Adafruit PWM Servo Driver Library
+- DFPlayer Mini MP3
+- Servo
+- NewPing (HC-SR04)
+- Wire (I2C)</code></pre>
+
+        <h3>Código Base Olhos Animatrônicos</h3>
+        <pre><code>#include <Wire.h>
+#include <Adafruit_PWMServoDriver.h>
+#include <DFPlayer_Mini_Mp3.h>
+
+Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
+
+void setup() {
+  Serial.begin(9600);
+  pwm.begin();
+  pwm.setPWMFreq(60);  // 60Hz para servos
+  mp3_set_serial(Serial);
+  delay(1);
+  mp3_set_volume(20);  // 0-30
+}
+
+void loop() {
+  // Mover servo para posição
+  pwm.setPWM(servo_num, 0, angulo);  // 150-600
+  delay(1000);
+}</code></pre>
+
+        <h3>Código Carro 2WD</h3>
+        <pre><code>#include <ESP32Servo.h>
+
+Servo motorEsq, motorDir;
+
+void setup() {
+  motorEsq.attach(4);  // GPIO4
+  motorDir.attach(2);   // GPIO2
+}
+
+void forward() {
+  motorEsq.write(180);
+  motorDir.write(0);
+}
+
+void stop() {
+  motorEsq.write(90);
+  motorDir.write(90);
+}</code></pre>
+
+        <h2 id="dimos">DimOS Integration</h2>
+        <p>DimOS é a plataforma de IA para robôs. Integra com Modal GLM-5.1 via API compatível com OpenAI.</p>
+
+        <h3>Instalação</h3>
+        <pre><code>pip install uv
+uv pip install dimos
+
+# Configure no .env
+MODAL_API_KEY=sua_chave_aqui</code></pre>
+
+        <h3>Uso Básico</h3>
+        <pre><code>from dimos.agents.modal_agent import agent
+
+meu_agente = agent()
+resposta = meu_agente.chat("Olá, qual é o seu nome?")
+print(resposta)</code></pre>
+
+        <h3>Exemplo: Robô Falante</h3>
+        <pre><code>import edge_tts
+import serial
+import asyncio
+
+arduino = serial.Serial('/dev/ttyUSB0', 9600)
+
+async def speak(texto):
+    # Gerar áudio
+    tts = edge_tts.Communicate(texto, "pt-BR-FranciscaNeural")
+    await tts.save("/tmp/fala.mp3")
+    
+    # Enviar para Arduino
+    arduino.write(b"PLAY\n")
+
+# Main loop
+async def main():
+    while True:
+        input_text = input("Você: ")
+        # Processar com DimOS
+        response = agent.chat(input_text)
+        await speak(response)
+
+asyncio.run(main())</code></pre>
+
+        <h2 id="guias">Guias de Montagem</h2>
+        <p>Guias passo a passo detalhados:</p>
+
+        <div class="grid">
+          <div class="grid-card">
+            <h5>Esp32-CAM</h5>
+            <p>1–2 horas. Configurar streaming de vídeo, detecção de objetos com TensorFlow Lite.</p>
+          </div>
+          <div class="grid-card">
+            <h5>Cabeça Humanóide</h5>
+            <p>4–6 horas. Olhos animatrônicos + DFPlayer + DimOS.</p>
+          </div>
+          <div class="grid-card">
+            <h5>Robô Braitenberg</h5>
+            <p>2–3 horas. Seguidor de luz reativo com LDRs.</p>
+          </div>
+          <div class="grid-card">
+            <h5>Carro 2WD</h5>
+            <p>6–8 horas. Câmera, controle Wi-Fi, DimOS.</p>
+          </div>
+          <div class="grid-card">
+            <h5>Braço Robótico</h5>
+            <p>8–12 horas. 4DOF, joystick PS2.</p>
+          </div>
+        </div>
+
+        <h2 id="lojas">Lojas Recomendadas</h2>
+        <table>
+          <thead>
+            <tr><th>Loja</th><th>Tipo</th><th>Nota</th><th>Destaque</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Mercado Livre</td><td>Marketplace</td><td>4.8</td><td>Variedade</td></tr>
+            <tr><td>RoboCore</td><td>Especializada</td><td>4.7</td><td>Conteúdo</td></tr>
+            <tr><td>FilipeFlop</td><td>Especializada</td><td>4.6</td><td>Frete R$150</td></tr>
+            <tr><td>Shopee</td><td>Marketplace</td><td>4.3</td><td>Preços</td></tr>
+            <tr><td>Santa Ifigênia</td><td>Física SP</td><td>4.5</td><td>Teste</td></tr>
+            <tr><td>Amazon</td><td>Marketplace</td><td>4.7</td><td>Original</td></tr>
+          </tbody>
+        </table>
+
+        <h2 id="troubleshooting">Troubleshooting</h2>
+        
+        <h3>ESP32-CAM não conecta</h3>
+        <ul>
+          <li>Verifique GPIO0 conectado a GND durante upload</li>
+          <li>Use FTDI com 5V (não 3.3V)</li>
+          <li> selecione correto board no Arduino IDE</li>
+        </ul>
+        <div class="callout warning">
+          <strong>Problema:</strong> "Brownout detector"<br>
+          <strong>Solução:</strong> Fonte USB não fornece corrente suficiente. Use fonte externa 5V 2A.
+        </div>
+
+        <h3>Servos não respondem</h3>
+        <ul>
+          <li>Verifique frequência PWM: 60Hz</li>
+          <li>Ângulo entre 150-600 (não 0-180)</li>
+          <li>Alimentação externa se +4 servos</li>
+        </ul>
+
+        <h3>DFPlayer não reproduz</h3>
+        <ul>
+          <li>Arquivos devem ser: 001.mp3, 002.mp3...</li>
+          <li>Cartão formatado em FAT32</li>
+          <li>Use resistor 1k no RX</li>
+        </ul>
+
+        <h3>Wi-Fi não conecta</h3>
+        <ul>
+          <li>Rede 2.4GHz (não 5GHz)</li>
+          <li>Verifique SSID e senha</li>
+          <li>Signal strength mínimo -70dBm</li>
+        </ul>
+
+        <h2 id="faq">FAQ</h2>
+        
+        <h3>Preciso de internet?</h3>
+        <p>Não! Use TTS local (Piper, Coqui, eSpeak NG) para robôs offline.</p>
+        
+        <h3>Melhor TTS para robôs autônomos?</h3>
+        <p>Piper TTS oferece melhor combinação qualidade + latência (&lt;50ms).</p>
+        
+        <h3>Posso usar outros modelos de IA?</h3>
+        <p>Sim! DimOS é compatível com qualquer API OpenAI-like (GPT-4, Claude, etc).</p>
+        
+        <h3>Qual Arduino escolher?</h3>
+        <ul>
+          <li>Uno: Projetos básicos</li>
+          <li>Mega: Muitos servos/sensores</li>
+          <li>ESP32: Wi-Fi + Bluetooth</li>
+        </ul>
+
+        <h2 id="recursos">Recursos Adicionais</h2>
+        <ul>
+          <li><a href="https://github.com/dimensionalOS/dimos">DimOS GitHub</a></li>
+          <li><a href="https://modal.com">Modal</a></li>
+          <li><a href="https://github.com/rhasspy/piper">Piper TTS</a></li>
+          <li><a href="https://github.com/coqui-ai/TTS">Coqui TTS</a></li>
+          <li><a href="https://www.thingiverse.com">Thingiverse (cases 3D)</a></li>
+        </ul>
+
+        <h2 id="licenca">Licença</h2>
+        <p>MIT License - Feel free to use, modify, and distribute.</p>
+      </main>
+
+      <aside style="position: sticky; top: 80px; align-self: start;">
+        <nav>
+          <h3 class="toc-title">Conteúdo</h3>
+          <ul class="toc-list">
+            <li><a href="#introducao">Introdução</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+            <li><a href="#pecas">Lista de Peças</a></li>
+            <li><a href="#pinout">Pinouts</a></li>
+            <li><a href="#tts">Voz / TTS</a></li>
+            <li><a href="#arduino">Arduino</a></li>
+            <li><a href="#dimos">DimOS</a></li>
+            <li><a href="#guias">Guias</a></li>
+            <li><a href="#lojas">Lojas</a></li>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#recursos">Recursos</a></li>
+          </ul>
+        </nav>
+      </aside>
+    </div>
+
+    <footer class="footer">
+      <p>RoboCraft BR — Wiki Open Source</p>
+      <p>
+        <a href="/">Início</a> •
+        <a href="/wiki">Wiki</a> ��
+        <a href="/llms.txt">LLMs.txt</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

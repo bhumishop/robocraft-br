@@ -1,0 +1,138 @@
+# RoboCraft BR — Context for LLMs
+
+## Overview
+Guia completo para montar robôs com IA no Brasil. Inclui projetos com peças do Mercado Livre, TTS (text-to-speech) local e na nuvem, e integração com DimOS + Modal GLM-5.1.
+
+## Site Structure
+- / (index) — Step-by-step selection guide
+- /wiki — Full documentation wiki
+- /llms.txt — This file
+
+## Projects (5 available)
+
+### 1. ESP32-CAM Visão Computacional
+- ID: esp32-cam
+- Cost: R$ 35–55
+- Difficulty: Easy
+- Time: 1–2 hours
+- Use cases: Security camera, plant monitoring, computer vision, IoT
+- Parts: ESP32-CAM AI-Thinker, FTDI module, MicroSD 8GB, Case 3D
+
+### 2. Cabeça Humanóide Falante
+- ID: head-humanoid
+- Cost: R$ 150–400
+- Difficulty: Easy
+- Time: 4–6 hours
+- Use cases: Buddhist temples, museums, reception, interactive presentations
+- Parts: Kit Olhos Animatrônicos, Arduino Uno R3, PCA9685 16ch, Servos SG90(4x), DFPlayer Mini, Alto-falante 3W, MicroSD 8GB, Fonte 5V 2A
+
+### 3. Robô Braitenberg V2
+- ID: braitenberg
+- Cost: R$ 80–150
+- Difficulty: Easy
+- Time: 2–3 hours
+- Use cases: Education, science fairs, basic competitions
+- Parts: Chassi 2WD, Arduino Uno, L298N Driver, LDR(2x), Bateria 9V
+- Note: Reactive robot that follows light sources automatically
+
+### 4. Carro 2WD com Câmera
+- ID: carro-2wd
+- Cost: R$ 200–350
+- Difficulty: Medium
+- Time: 6–8 hours
+- Use cases: Patrolling, remote monitoring, STEM education, competitions
+- Parts: Chassi 2WD, ESP32-CAM, FTDI module, L298N Driver, Bateria 18650(2x), HC-SR04 Ultrasonic, Jumpers
+
+### 5. Braço Robótico 4DOF
+- ID: braco-servo
+- Cost: R$ 200–350
+- Difficulty: Hard
+- Time: 8–12 hours
+- Use cases: Pick and place, education, research, competitions
+- Parts: Servos MG996R(4x), Arduino Mega, PCA9685 Driver, Joystick PS2, Acrylic structure, Fonte 5V 3A
+
+## TTS Providers (8 available)
+
+### Cloud TTS
+- Edge TTS: Free, High quality, Low latency, pt-BR excellent, voices: pt-BR-FranciscaNeural
+- gTTS: Free, Medium quality, Medium latency, Simple Google Translate API
+- ElevenLabs: Free (10k chars/month), Ultra High quality, Voice cloning available
+- OpenAI TTS: Paid ($15/1M chars), High quality, Low latency, voices: alloy, echo, fable, nova
+
+### Local TTS (no internet required)
+- Piper TTS: Free, High quality, <50ms latency, Runs on Raspberry Pi, model: pt_BR-edresson
+- Coqui TTS: Free, Very High quality, Medium latency, Supports voice training
+- Mimic3 TTS: Free, High quality, Medium latency, Mozilla-based
+- eSpeak NG: Free, Low (robotic) quality, Instant, Runs on any MCU including Arduino/ESP32
+
+## Shops (6 recommended)
+1. Mercado Livre — Marketplace, 4.8 stars, Everything
+2. RoboCore — Specialized, 4.7 stars, Educational content
+3. FilipeFlop — Specialized, 4.6 stars, Free shipping R$150
+4. Shopee Brasil — Marketplace, 4.3 stars, Lower prices
+5. Santa Ifigênia — Physical store (São Paulo), 4.5 stars, Test before buying
+6. Amazon Brasil — Marketplace, 4.7 stars, Prime delivery
+
+## Technical Information
+
+### Arduino Pinouts
+- A4: I2C SDA
+- A5: I2C SCL
+- D0-D13: Digital GPIO
+- D3, D5, D6, D9, D10, D11: PWM
+- A0-A5: ADC
+
+### ESP32-CAM Pinouts
+- U0T: TX (FTDI RX)
+- U0R: RX (FTDI TX)
+- GPIO0: Flash mode (connect to GND to program)
+- EN: Enable (internal pull-up)
+
+### Libraries Needed
+- Adafruit PWM Servo Driver Library
+- DFPlayer Mini MP3
+- Servo
+- NewPing (HC-SR04)
+- Wire (I2C)
+
+## DimOS Integration
+- Platform: dimos.agents.modal_agent
+- Model: Modal GLM-5.1-FP8
+- API: OpenAI-compatible
+- Install: pip install uv && uv pip install dimos
+- Configure: MODAL_API_KEY in .env
+
+## Step-by-Step Flow
+1. Choose robot project (/#robots)
+2. View parts list (BOM) and pinouts
+3. Select TTS voice (/#tts)
+4. Choose shops to buy parts
+5. Follow assembly guide (/#guides)
+6. Set up DimOS integration (/#dimos)
+
+## Links
+- DimOS: https://github.com/dimensionalOS/dimos
+- Modal: https://modal.com
+- Piper TTS: https://github.com/rhasspy/piper
+- Coqui TTS: https://github.com/coqui-ai/TTS
+- Edge TTS: https://github.com/rany2/edge-tts
+- ElevenLabs: https://elevenlabs.io/
+
+## Tech Stack
+- Frontend: Vue 3 (CDN)
+- Fonts: IBM Plex Sans, Space Mono, JetBrains Mono
+- Hosting: GitHub Pages
+- Theme: Dark AMOLED (#050505) with squared red (#ff3333) / green (#00cc44) buttons, no gradients, no AI slop aesthetics
+- Responsive: Mobile-first design
+
+## Hardware Requirements by Project
+- ESP32-CAM: FTDI programmer, MicroSD card
+- Cabeça Humanóide: Arduino IDE, libraries
+- Carro 2WD: Wi-Fi network 2.4GHz
+- Braço Robótico: External power supply 5V 3A
+
+## Common Issues
+- ESP32-CAM not connecting: Check GPIO0-GND connection during flash
+- Servos not responding: Verify 60Hz PWM frequency, angles 150-600
+- DFPlayer not playing: Files must be named 001.mp3, 002.mp3, etc.
+- Wi-Fi issues: Use 2.4GHz network (not 5GHz)
