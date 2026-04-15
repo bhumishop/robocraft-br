@@ -42,7 +42,7 @@ createApp({
         pinout: {
           arduino: { sda: 'A4', scl: 'A5', d10: 'D10', d11: 'D11', vcc: '5V', gnd: 'GND' },
           pca9685: { vcc: 'VCC', gnd: 'GND', scl: 'SCL', sda: 'SDA' },
-          dfplayer: { tx: 'D11', rx: 'D10', spk+: 'SPK+', spk-: 'SPK-' },
+          dfplayer: { tx: 'D11', rx: 'D10', speakerPos: 'SPK+', speakerNeg: 'SPK-' },
         },
         guide: 'head-humanoid'
       },
